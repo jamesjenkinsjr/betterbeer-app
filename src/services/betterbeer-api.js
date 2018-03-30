@@ -18,7 +18,7 @@ export const pushNewBeer = (entry) => {
         name: entry.name,
         price: entry.price,
         purchaseType: entry.purchaseType,
-        latitude: entry.lattitude,
+        latitude: entry.latitude,
         longitude: entry.longitude
     })
 }
