@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getAllBeerFeed } from "../services/betterbeer-api.js";
+import titleCase from 'title-case'; //util to make everything title case ex. big nose > Big Nose
 
 class BeerFeed extends Component {
   constructor() {
@@ -14,11 +15,13 @@ class BeerFeed extends Component {
   handleGetFeed(e) {
     getAllBeerFeed().then(response => {
       const feed = response.data.submissions;
+      console.log(feed);
       this.setState({
         feed: feed
       });
     });
   }
+
   render() {
     return (
       <div>
@@ -26,8 +29,8 @@ class BeerFeed extends Component {
 
         {this.state.feed.map(entry => {
           return (
-            <div>
-              <h3>{entry.name}</h3>
+            <div key={entry._id}>
+              <h3>{titleCase(entry.name)}</h3>
               <ul>
                 <li>Price: {entry.price}</li>
                 <li>Spotted on: {entry.createTimestamp}</li>

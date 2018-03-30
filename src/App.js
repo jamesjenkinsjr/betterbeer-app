@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import BeerEntry from './components/BeerEntry';
 import BeerFeed from './components/BeerFeed';
-import { getAllBeerFeed, getFilteredBeerFeed, pushNewBeer } from './services/betterbeer-api.js';
+import BeerSearch from './components/BeerSearch'
+import { pushNewBeer } from './services/betterbeer-api.js';
 
 class App extends Component {
   constructor(){
@@ -18,22 +19,6 @@ class App extends Component {
     }
   }
   
-  handleGetFeed(e) {
-    getAllBeerFeed()
-      .then(response => {
-        const feed = response.data.submissions;
-        console.log(feed);
-      })
-  }
-  handleFilteredFeed(e, beer) {
-    console.log(beer);
-    e.preventDefault();
-    getFilteredBeerFeed(beer)
-      .then(response => {
-        const filteredFeed = response.data.submissions;
-        console.log(filteredFeed);
-      })
-  }
   //For the actual beer submission form, move to new component
   handleNewBeerSubmit(e) {
     e.preventDefault();
@@ -49,12 +34,8 @@ class App extends Component {
       <div>
         <h1>BetterBeer</h1>
         <h2>Get the best prices from the locals you trust!</h2>
+        <BeerSearch />
         <BeerFeed />
-        <form onSubmit={(e) => this.handleFilteredFeed(e, document.getElementById('beer').value)}>
-        <h3>Search for a beer:</h3>
-          <input id="beer" type="text" name="beer" placeholder="ex. 'Wakulla', 'Big Nose'"/>
-          <button type="submit">Filtered</button>
-        </form>
         <form onSubmit={(e) => this.handleNewBeerSubmit(e)}>
           <h3>Spotted a better deal? Submit it here:</h3>
           <input 
