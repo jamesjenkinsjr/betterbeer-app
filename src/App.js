@@ -36,8 +36,9 @@ class App extends Component {
   //For the actual beer submission form, move to new component
   handleNewBeerSubmit(e) {
     e.preventDefault();
-    console.log(e);
-    pushNewBeer(this.state.entry) 
+    console.log(this.state.entry);
+    const entry = this.state.entry;
+    pushNewBeer(entry) 
       .then(response => {      
         console.log(response)
       })

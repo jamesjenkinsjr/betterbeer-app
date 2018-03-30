@@ -14,7 +14,7 @@ export const getFilteredBeerFeed = (beer) => {
 
 export const pushNewBeer = (entry) => {
     const url = `${betterbeerAPIUrl}/submissions`
-    axios.post(url, {
+    return axios.post(url, {
         name: entry.name,
         price: entry.price,
         purchaseType: entry.purchaseType,
