@@ -34,7 +34,7 @@ class BeerFeed extends Component {
               <ul>
                 <li>Price: {entry.price}</li>
                 <li>Spotted on: {entry.createTimestamp}</li>
-                <li>Toast Count: {entry.karmaCount}</li>
+                <li>Toasts: {entry.karmaCount}</li>
                 <li>Where at: Panama City</li>
               </ul>
             </div>

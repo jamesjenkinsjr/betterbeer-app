@@ -46,7 +46,7 @@ class BeerSearch extends Component {
                       <ul>
                         <li>Price: {result.price}</li>
                         <li>Spotted on: {result.createTimestamp}</li>
-                        <li>Toast Count: {result.karmaCount}</li>
+                        <li>Toasts: {result.karmaCount}</li>
                         <li>Where at: Panama City</li> 
                       </ul>
                     </div>
