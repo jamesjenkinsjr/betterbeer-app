@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import BeerEntry from './components/BeerEntry';
+import BeerFeed from './components/BeerFeed';
 import { getAllBeerFeed, getFilteredBeerFeed, pushNewBeer } from './services/betterbeer-api.js';
 
 class App extends Component {
@@ -48,8 +49,7 @@ class App extends Component {
       <div>
         <h1>BetterBeer</h1>
         <h2>Get the best prices from the locals you trust!</h2>
-        <h3>Beer Feed:</h3>
-        <button onClick={(e) => this.handleGetFeed()}>Feed!</button>
+        <BeerFeed />
         <form onSubmit={(e) => this.handleFilteredFeed(e, document.getElementById('beer').value)}>
         <h3>Search for a beer:</h3>
           <input id="beer" type="text" name="beer" placeholder="ex. 'Wakulla', 'Big Nose'"/>
