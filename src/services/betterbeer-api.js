@@ -11,3 +11,14 @@ export const getFilteredBeerFeed = (beer) => {
     const url = `${betterbeerAPIUrl}/submissions/search?beer=${beer}`
     return axios.get(url);
 }
+
+export const pushNewBeer = (entry) => {
+    const url = `${betterbeerAPIUrl}/submissions`
+    axios.post(url, {
+        name: entry.name,
+        price: entry.price,
+        purchaseType: entry.purchaseType,
+        latitude: entry.lattitude,
+        longitude: entry.longitude
+    })
+}
