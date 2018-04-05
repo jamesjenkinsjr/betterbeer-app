@@ -16,8 +16,11 @@ class BeerFeed extends Component {
   handleGetFeed(e) {
     getAllBeerFeed().then(response => {
       const feed = response.data.submissions;
+      const sortedFeed = feed.sort((a,b) => {
+        return new Date(b.createTimestamp) - new Date(a.createTimestamp);
+      })
       this.setState({
-        feed: feed
+        feed: sortedFeed
       });
     });
   }
