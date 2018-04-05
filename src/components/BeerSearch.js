@@ -18,8 +18,11 @@ class BeerSearch extends Component {
     getFilteredBeerFeed(beerSearch)
         .then(response => {
             const filteredFeed = response.data.submissions;
+            const sortedFeed = filteredFeed.sort((a,b) => {
+              return new Date(b.createTimestamp) - new Date(a.createTimestamp);
+            })
             this.setState({
-                searchResults: filteredFeed
+                searchResults: sortedFeed
             })
         });
   }
@@ -36,7 +39,7 @@ class BeerSearch extends Component {
           />
           {
             this.state !== null
-            ?  this.state.searchResults.map(entry => {return(<BeerEntry {...entry}/>)})
+            ?  this.state.searchResults.map(entry => {return(<BeerEntry key={entry._id} {...entry}/>)})
             : ''
           }
       </div>
