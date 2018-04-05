@@ -1,26 +1,23 @@
 import React, { Component } from "react";
+import BeerEntry from './BeerEntry';
 import { getFilteredBeerFeed } from '../services/betterbeer-api.js';
-import titleCase from 'title-case';
 
 class BeerSearch extends Component {
-    constructor(){
-        super();
-        this.state = {
-            searchTerm: '',
-            searchResults: []
-        }
+  constructor(){
+    super();
+    this.state = {
+      search: '',
+      searchResults: []
     }
+  }
 
   handleFilteredFeed(beerSearch) {
-    
-    console.log(beerSearch);
     this.setState({
-        searchTerm: beerSearch
+        search: beerSearch
     });
     getFilteredBeerFeed(beerSearch)
         .then(response => {
             const filteredFeed = response.data.submissions;
-            console.log(filteredFeed);
             this.setState({
                 searchResults: filteredFeed
             })
@@ -38,19 +35,8 @@ class BeerSearch extends Component {
             onChange={(e) => this.handleFilteredFeed(e.target.value)}
           />
           {
-            this.state.searchTerm !== null
-            ?  <div>{this.state.searchResults.map(result => {
-                return (
-                    <div key={result._id}>
-                      <h3>{titleCase(result.name)}</h3>
-                      <ul>
-                        <li>Price: {result.price}</li>
-                        <li>Spotted on: {result.createTimestamp}</li>
-                        <li>Toasts: {result.karmaCount}</li>
-                        <li>Where at: Panama City</li> 
-                      </ul>
-                    </div>
-           )})}</div> 
+            this.state !== null
+            ?  this.state.searchResults.map(entry => {return(<BeerEntry {...entry}/>)})
             : ''
           }
       </div>
