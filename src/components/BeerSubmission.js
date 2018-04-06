@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BeerEntry from './BeerEntry';
 import { pushNewBeer } from '../services/betterbeer-api';
-import { getSearchResults } from '../services/google-maps';
+import { getSearchResults, getLocation } from '../services/google-maps';
 
 class BeerSubmission extends Component {
   constructor(){
@@ -35,7 +35,8 @@ class BeerSubmission extends Component {
             <div>
         <form onSubmit={(e) => this.handleNewBeerSubmit(e)}>
           <h3>Spotted a better deal? Submit it here:</h3>
-          {console.log('API' + getSearchResults('Swamp', 29.614778, -82.376858))}
+          {console.log('Search results: ' + getSearchResults('Swamp', 29.614778, -82.376858))}
+          {console.log('Zip to lat and long ' + getLocation(32601))}
           <input 
             type="text" 
             name="name" 

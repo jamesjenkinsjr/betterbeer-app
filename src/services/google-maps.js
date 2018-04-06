@@ -7,3 +7,12 @@ export const getSearchResults = (input, lat, long) => {
         console.log(response);
     })
 };
+
+export const getLocation = (zip) => {
+    const url = `/geocode/${zip}`
+    return axios.get(url)
+        .then(response => {
+            console.log(response);
+             return response.data.results[0].geometry.location;
+        })
+}
