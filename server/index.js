@@ -23,9 +23,9 @@ serverApp.get('/geocode/:zip', function(request, response) {
         });
 });
 
-serverApp.get('/autocomplete/:input/:lat,:long', function(request, response){
-    const {input, lat, long} = request.params;
-    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=establishment&location=${lat},${long}&radius=500&key=${GMAPS_API_KEY}`;
+serverApp.get('/autocomplete/:input', function(request, response){
+    const {input} = request.params;
+    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=establishment&radius=500&key=${GMAPS_API_KEY}`;
     axios
         .get(url)
         .then(res => {

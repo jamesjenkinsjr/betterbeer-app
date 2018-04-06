@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const getSearchResults = (input, lat, long) => {
-  const url = `/autocomplete/${input}/${lat},${long}`;
+export const getSearchResults = (input) => {
+  const url = `/autocomplete/${input}`;
   return axios.get(url)
     .then(response => {
-        console.log(response);
+        return response.data.predictions;
     })
 };
 
