@@ -8,11 +8,10 @@ class BeerSubmission extends Component {
     super();
     this.state = {
       entry: {
-        name: "",
-        price: "",
-        purchaseType: "",
-        latitude: 12.3456,
-        longitude: -65.4321
+        name: '',
+        price: '',
+        purchaseType: '',
+        location: ''
       },
       search: "",
       results: []
@@ -41,6 +40,18 @@ class BeerSubmission extends Component {
         results: predictions
       });
     });
+  }
+
+  handleSetLocation(result) {
+    this.setState({
+      entry: {
+        ...this.state.entry,
+      location: result.description,
+      },
+      search: '',
+      results: []
+    })
+
   }
 
   render() {
@@ -84,6 +95,8 @@ class BeerSubmission extends Component {
             />
           </label>
           <br />
+          <input type="disabled" value={this.state.entry.location} placeholder='Searching...'/>
+          <br/>
           <label>
             Find Location
             <input
@@ -94,9 +107,10 @@ class BeerSubmission extends Component {
           {this.state.search
             ?
                 this.state.results.map(result => {
+                  console.log(result);
                 return( 
-                  <ul key={result.description}>
-                    <li><button>{result.description}</button></li>
+                  <ul key={result.id}>
+                    <li><button onClick={() => this.handleSetLocation(result)}>{result.description}</button></li>
                   </ul>
                 
                 );
