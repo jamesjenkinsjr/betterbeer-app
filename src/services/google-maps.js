@@ -8,11 +8,11 @@ export const getSearchResults = (input) => {
     })
 };
 
-export const getLocation = (zip) => {
-    const url = `/geocode/${zip}`
-    return axios.get(url)
-        .then(response => {
-            console.log(response);
-             return response.data.results[0].geometry.location;
-        })
-}
+// export const getLocation = (zip) => {
+//     const url = `/geocode/${zip}`
+//     return axios.get(url)
+//         .then(response => {
+//             console.log(response);
+//              return response.data.results[0].geometry.location;
+//         })
+// }

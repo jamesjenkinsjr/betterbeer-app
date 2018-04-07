@@ -11,7 +11,8 @@ class BeerSubmission extends Component {
         name: '',
         price: '',
         purchaseType: '',
-        location: ''
+        location: '',
+        placeID: ''
       },
       search: "",
       results: []
@@ -47,6 +48,7 @@ class BeerSubmission extends Component {
       entry: {
         ...this.state.entry,
       location: result.description,
+      placeID: result.place_id
       },
       search: '',
       results: []
