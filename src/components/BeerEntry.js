@@ -10,7 +10,7 @@ const BeerEntry = (props) => {
                 <li>Price: {props.price}</li>
                 <li>Spotted on: {prettyDate(props.createTimestamp)}</li>
                 <li>Toasts: {props.karmaCount}</li>
-                <li>Where at: {props.latitude}, {props.longitude}</li>
+                <li>Where at: {props.location}</li>
               </ul>
             </div>
         );
