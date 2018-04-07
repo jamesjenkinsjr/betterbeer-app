@@ -55,6 +55,14 @@ class BeerSubmission extends Component {
     })
 
   }
+  handlePurchaseType(e) {
+    this.setState({
+      entry: {
+        ...this.state.entry,
+        purchaseType: e.target.value
+      }
+    })
+  }
 
   render() {
     return (
@@ -118,11 +126,11 @@ class BeerSubmission extends Component {
                 );
                 })
               
-            : "Locations will appear here"}
+            :   "Locations will appear here"}
           <br />
           <select
             name="purchaseType"
-            value={this.state.entry.purchaseType}
+            onChange={(e) => this.handlePurchaseType(e)}
             required
           >
             <option value="" selected disabled hidden>
@@ -136,34 +144,6 @@ class BeerSubmission extends Component {
             <option value="24pk">24-Pack</option>
           </select>
           <br />
-          <input
-            type="float"
-            name="latitude"
-            value={this.state.entry.latitude}
-            onChange={e => {
-              this.setState({
-                entry: {
-                  ...this.state.entry,
-                  latitude: e.target.value
-                }
-              });
-            }}
-            hidden
-          />
-          <input
-            type="float"
-            name="longitude"
-            value={this.state.entry.longitude}
-            onChange={e => {
-              this.setState({
-                entry: {
-                  ...this.state.entry,
-                  longitude: e.target.value
-                }
-              });
-            }}
-            hidden
-          />
           <button type="submit">Submit Find</button>
         </form>
       </div>
