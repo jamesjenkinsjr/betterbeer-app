@@ -158,6 +158,10 @@ class BeerSubmission extends Component {
                 />
               </div>
             </label>
+            {!this.state.search
+            ? <p class="help">Begin typing above to find a location</p>
+            : ''
+            }
           </div>
           {this.state.search ? (
             <div class="buttons">
@@ -172,9 +176,10 @@ class BeerSubmission extends Component {
                   </button>
                 );
               })}
-            </div>
+            </div>            
+            
           ) : (
-            <p class="help">Begin typing above to find a location</p>
+            ''
           )}
 
           <div class="field">
