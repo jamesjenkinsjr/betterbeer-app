@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import BeerEntry from "./BeerEntry";
+import FormSuccess from "./FormSuccess";
 import { pushNewBeer } from "../services/betterbeer-api";
 import { getSearchResults, getLocation } from "../services/google-maps";
 import LoadingIcon from '../images/loading.gif';
@@ -17,7 +18,7 @@ class BeerSubmission extends Component {
       },
       search: "",
       results: [],
-      hasSubmit: 0
+      hasSubmit: null
     };
   }
   componentWillMount() {
@@ -39,12 +40,9 @@ class BeerSubmission extends Component {
     pushNewBeer(entry).then(response => {
       console.log(response);
       formWrap.removeChild(loader);
-      const thankYou = document.createElement('div');
-      const thankYouMessage = document.createElement('h3');
-      thankYouMessage.classList.add('');
-      thankYouMessage.innerText = 'Your submission was successful!'
-      thankYou.appendChild(thankYouMessage);
-      formWrap.appendChild(thankYou);
+      this.setState({
+        hasSubmitted: 1
+      })
     });
 
   }
@@ -83,6 +81,7 @@ class BeerSubmission extends Component {
   }
 
   render() {
+    if(this.state.hasSubmitted !== 1) {
     return (
       <div id="form-wrap">
         <form id="beer-submit" onSubmit={e => this.handleNewBeerSubmit(e)}>
@@ -213,6 +212,11 @@ class BeerSubmission extends Component {
         </form>
       </div>
     );
+  } else {
+    return (
+      <FormSuccess />
+    );
+  }
   }
 }
 
