@@ -8,10 +8,13 @@ import BeerSearch from './components/BeerSearch'
 import BeerSubmission from './components/BeerSubmission'
 
 class App extends Component {
+  componentDidMount() {
+    document.title = 'BetterBeer';
+  }
   
   render() {
     return (
-      <div>
+      <div class='content'>
         <h1>BetterBeer</h1>
         <h2>Get the best prices from the locals you trust!</h2>
         <Navigation />
