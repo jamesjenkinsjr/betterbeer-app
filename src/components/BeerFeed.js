@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import BeerEntry from './BeerEntry';
+import BeerEntry from "./BeerEntry";
 import { getAllBeerFeed } from "../services/betterbeer-api.js";
 
 class BeerFeed extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       feed: []
-    }
+    };
   }
 
   componentDidMount() {
@@ -16,9 +16,9 @@ class BeerFeed extends Component {
   handleGetFeed(e) {
     getAllBeerFeed().then(response => {
       const feed = response.data.submissions;
-      const sortedFeed = feed.sort((a,b) => {
+      const sortedFeed = feed.sort((a, b) => {
         return new Date(b.createTimestamp) - new Date(a.createTimestamp);
-      })
+      });
       this.setState({
         feed: sortedFeed
       });
@@ -27,10 +27,15 @@ class BeerFeed extends Component {
 
   render() {
     return (
-      <div>
+      <div class="section">
+        <div class="container">
         <h3>Beer Feed:</h3>
-        
-        {this.state.feed.map(entry => {return (<BeerEntry key={entry._id} {...entry} /> );})} 
+        <div class="tile is-ancestor is-vertical is-8">
+            {this.state.feed.map(entry => {
+              return <BeerEntry key={entry._id} {...entry} />;
+            })}
+        </div>
+        </div>
       </div>
     );
   }
