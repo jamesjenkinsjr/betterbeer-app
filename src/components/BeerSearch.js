@@ -28,20 +28,29 @@ class BeerSearch extends Component {
   }
   render() {
     return (
-      <div>
-          <h3>Search for a beer:</h3>
+      <div class="container">
+          <div className="section">
+          
           <input
             id="beer"
+            class="input"
             type="text"
             name="beer"
             placeholder="ex. 'Wakulla', 'Big Nose'"
             onChange={(e) => this.handleFilteredFeed(e.target.value)}
           />
+          <div className="section">
+          <div className="columns is-centered">
+          <div className="tile is-ancestor is-vertical is-8">
           {
             this.state !== null
             ?  this.state.searchResults.map(entry => {return(<BeerEntry key={entry._id} {...entry}/>)})
             : ''
           }
+          </div>
+          </div>
+          </div>
+          </div>
       </div>
     );
   }

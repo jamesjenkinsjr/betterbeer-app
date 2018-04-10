@@ -27,13 +27,16 @@ class BeerFeed extends Component {
 
   render() {
     return (
-      <div class="section">
-        <div class="container">
-        <h3>Beer Feed:</h3>
-        <div class="tile is-ancestor is-vertical is-8">
+      <div className="section">
+        <div className="container">
+        
+        <div className="columns is-centered">
+        
+        <div className="tile is-ancestor is-vertical is-8">
             {this.state.feed.map(entry => {
               return <BeerEntry key={entry._id} {...entry} />;
             })}
+            </div>
         </div>
         </div>
       </div>
