@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import BeerEntry from "./BeerEntry";
 import { pushNewBeer } from "../services/betterbeer-api";
 import { getSearchResults, getLocation } from "../services/google-maps";
+import LoadingIcon from '../images/loading.gif';
 
 class BeerSubmission extends Component {
   constructor() {
@@ -15,7 +16,8 @@ class BeerSubmission extends Component {
         placeID: ""
       },
       search: "",
-      results: []
+      results: [],
+      hasSubmit: 0
     };
   }
   componentWillMount() {
@@ -26,10 +28,25 @@ class BeerSubmission extends Component {
 
   handleNewBeerSubmit(e) {
     e.preventDefault();
+    const formWrap = document.getElementById('form-wrap');
+    const loader = document.createElement('img');
+    loader.src = LoadingIcon;
+    loader.setAttribute('style', 'height: 300px; width: 300px');
+    formWrap.removeChild(document.getElementById('beer-submit'));
+    formWrap.appendChild(loader);
+    
     const entry = this.state.entry;
     pushNewBeer(entry).then(response => {
       console.log(response);
+      formWrap.removeChild(loader);
+      const thankYou = document.createElement('div');
+      const thankYouMessage = document.createElement('h3');
+      thankYouMessage.classList.add('');
+      thankYouMessage.innerText = 'Your submission was successful!'
+      thankYou.appendChild(thankYouMessage);
+      formWrap.appendChild(thankYou);
     });
+
   }
 
   handleGoogleSearch(e) {
@@ -44,13 +61,15 @@ class BeerSubmission extends Component {
   }
 
   handleSetLocation(result) {
+    const search = document.getElementById('search');
+    search.value = result.description;
     this.setState({
       entry: {
         ...this.state.entry,
         location: result.description,
         placeID: result.place_id
       },
-      search: "",
+      search: '',
       results: []
     });
   }
@@ -65,16 +84,18 @@ class BeerSubmission extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={e => this.handleNewBeerSubmit(e)}>
-          <h3>Spotted a better deal? Submit it here:</h3>
+      <div id="form-wrap">
+        <form id="beer-submit" onSubmit={e => this.handleNewBeerSubmit(e)}>
+          <h3 class="title">Spotted a better deal? Submit it here:</h3>
           <div class="field">
+          <label class="label">
+          Name of beer
             <div class="control">
               <input
                 class="input"
                 type="text"
                 name="name"
-                placeholder="Name of beer"
+                placeholder="Guiness, Big Nose, etc."
                 value={this.state.entry.name}
                 onChange={e => {
                   this.setState({
@@ -87,6 +108,7 @@ class BeerSubmission extends Component {
                 required
               />
             </div>
+            </label>
           </div>
 
           <div class="field">
@@ -118,7 +140,7 @@ class BeerSubmission extends Component {
             <div class="control">
               <input
                 class="input"
-                type="disabled"
+                type="hidden"
                 value={this.state.entry.location}
                 placeholder="Searching..."
               />
@@ -127,9 +149,10 @@ class BeerSubmission extends Component {
 
           <div class="field">
             <label class="label">
-              Find Location
+              Where'd you find it?
               <div class="control">
                 <input
+                  id="search"
                   class="input"
                   placeholder="Ex. Cigar City, Gator Beverage, etc."
                   onChange={e => this.handleGoogleSearch(e)}
@@ -143,7 +166,7 @@ class BeerSubmission extends Component {
                 return (
                   <button
                     key={result.id}
-                    class="button is-secondary"
+                    class="button is-primary is-outlined"
                     onClick={() => this.handleSetLocation(result)}
                   >
                     {result.description}
@@ -152,7 +175,7 @@ class BeerSubmission extends Component {
               })}
             </div>
           ) : (
-            <p class="help">Location results will appear here</p>
+            <p class="help">Begin typing above to find a location</p>
           )}
 
           <div class="field">
