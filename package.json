@@ -1,29 +1,22 @@
 {
-  "name": "betterbeer-app",
-  "version": "0.1.0",
-  "private": true,
-  "proxy": "http://localhost:5000",
-  "dependencies": {
-    "axios": "^0.18.0",
-    "body-parser": "^1.18.2",
-    "bulma": "^0.6.2",
-    "concurrently": "^3.5.1",
-    "dotenv": "^5.0.1",
-    "express": "^4.16.3",
-    "npm": "^5.8.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2",
-    "title-case": "^2.1.1"
-  },
-  "devDependencies": {
-    "react-scripts": "1.1.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "serve": "concurrently \"node server/\"  \"npm start\"",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "name": "betterbeer-app",
+    "version": "1.0.0",
+    "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "serve": "concurrently \"node server/\" \"cd client && npm start\"",
+        "prod": "cd client && npm run build && cd .. && node server",
+        "heroku-postbuild": "cd client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+        "start": "node server/"
+    },
+    "dependencies": {
+        "axios": "^0.18.0",
+        "body-parser": "^1.18.2",
+        "dotenv": "^5.0.0",
+        "express": "^4.16.2"
+    },
+    "devDependencies": {
+        "concurrently": "^3.5.1"
+    }
 }
