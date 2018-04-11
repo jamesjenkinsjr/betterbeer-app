@@ -19,16 +19,18 @@ const Navigation = props => (
     </div>
     </div>
 
-    <div id="menu" className="navbar-menu">
+    <div id="menu" className="navbar-menu is-primary">
       <div className="navbar-end">
         <div className="navbar-item">
-          <div className="field is-grouped">
+          <div className="field is-grouped is-primary">
             <p className="control">
               <a className="button is-large is-primary">
                 <Link style={{ textDecoration: "none", color: "white" }} to="/">
                   Feed
                 </Link>
               </a>
+              </p>
+              <p className="control">
               <a className="button is-large is-primary">
                 <Link
                   style={{ textDecoration: "none", color: "white" }}
@@ -37,6 +39,8 @@ const Navigation = props => (
                   Search
                 </Link>
               </a>
+              </p>
+              <p className="control">
               <a className="button is-large is-primary">
                 <Link
                   style={{ textDecoration: "none", color: "white" }}

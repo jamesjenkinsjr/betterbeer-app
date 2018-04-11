@@ -28,12 +28,12 @@ class BeerSearch extends Component {
   }
   render() {
     return (
-      <div class="container">
+      <div className="container">
           <div className="section">
           
           <input
             id="beer"
-            class="input"
+            className="input"
             type="text"
             name="beer"
             placeholder="ex. 'Wakulla', 'Big Nose'"
