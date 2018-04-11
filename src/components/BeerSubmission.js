@@ -83,6 +83,8 @@ class BeerSubmission extends Component {
   render() {
     if(this.state.hasSubmitted !== 1) {
     return (
+      <div className="section">
+        <div className="container">
       <div id="form-wrap">
         <form id="beer-submit" onSubmit={e => this.handleNewBeerSubmit(e)}>
           <h3 class="title">Spotted a better deal? Submit it here:</h3>
@@ -215,6 +217,8 @@ class BeerSubmission extends Component {
             </div>
           </div>
         </form>
+      </div>
+      </div>
       </div>
     );
   } else {
