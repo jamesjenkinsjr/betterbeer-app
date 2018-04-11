@@ -30,7 +30,7 @@ class BeerSubmission extends Component {
   handleNewBeerSubmit(e) {
     e.preventDefault();
     if (!this.state.entry.location) {
-      alert('You must search and select a location!')
+      alert('You must select a location!')
       return;
     } 
     const formWrap = document.getElementById('form-wrap');
