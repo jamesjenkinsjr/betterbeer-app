@@ -7,6 +7,7 @@ const BeerEntry = props => {
         <article class="tile is-child notification is-primary box">
           <p class="title">{uppercase(props.name)}</p>
           <p class="subtitle">${props.price}</p>
+          <p><strong>Where at:</strong> {uppercase(props.purchaseType)}</p>
             <p><strong>Where at:</strong> {props.location}</p>
             <p><strong>Spotted on:</strong> {prettyDate(props.createTimestamp)}
          </p>
