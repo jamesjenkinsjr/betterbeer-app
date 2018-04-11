@@ -29,6 +29,10 @@ class BeerSubmission extends Component {
 
   handleNewBeerSubmit(e) {
     e.preventDefault();
+    if (!this.state.entry.location) {
+      alert('You must search and select a location!')
+      return;
+    } 
     const formWrap = document.getElementById('form-wrap');
     const loader = document.createElement('img');
     loader.src = LoadingIcon;
@@ -70,6 +74,7 @@ class BeerSubmission extends Component {
       search: '',
       results: []
     });
+
   }
   handlePurchaseType(e) {
     this.setState({
@@ -90,13 +95,13 @@ class BeerSubmission extends Component {
       <div id="form-wrap">
 
         <form id="beer-submit" onSubmit={e => this.handleNewBeerSubmit(e)}>
-          <h3 class="title">Spotted a better deal?</h3>
-          <div class="field">
-          <label class="label">
+          <h3 className="title">Spotted a better deal?</h3>
+          <div className="field">
+          <label className="label">
           Beer Name
-            <div class="control">
+            <div className="control">
               <input
-                class="input"
+                className="input"
                 type="text"
                 name="name"
                 placeholder="Guiness, Big Nose, etc."
@@ -115,12 +120,12 @@ class BeerSubmission extends Component {
             </label>
           </div>
 
-          <div class="field">
-            <label class="label">
+          <div className="field">
+            <label className="label">
               Price
-              <div class="control">
+              <div className="control">
                 <input
-                  class="input"
+                  className="input"
                   type="number"
                   step="0.01"
                   name="price"
@@ -140,10 +145,10 @@ class BeerSubmission extends Component {
             </label>
           </div>
 
-          <div class="field">
-            <div class="control">
+          <div className="field">
+            <div className="control">
               <input
-                class="input"
+                className="input"
                 type="hidden"
                 value={this.state.entry.location}
                 placeholder="Searching..."
@@ -151,47 +156,50 @@ class BeerSubmission extends Component {
             </div>
           </div>
 
-          <div class="field">
-            <label class="label">
+          <div className="field">
+            <label className="label">
               Where'd you find it?
-              <div class="control">
+              <div className="control">
                 <input
                   id="search"
-                  class="input"
+                  required
+                  className="input"
                   placeholder="Ex. Cigar City, Gator Beverage, etc."
                   onChange={e => this.handleGoogleSearch(e)}
                 />
               </div>
             </label>
             {!this.state.search
-            ? <p class="help">Begin typing above to find a location</p>
+            ? <p className="help">Begin typing above to find a location</p>
             : ''
             }
           </div>
           {this.state.search ? (
-            <div class="buttons">
+            
+            <div className="buttons">
               {this.state.results.map(result => {
                 return (
                   <button
                     key={result.id}
-                    class="button is-primary is-outlined"
+                    className="button is-primary is-outlined"
+                    style={{ whiteSpace: 'pre-wrap', height: '100%'}}
                     onClick={() => this.handleSetLocation(result)}
                   >
                     {result.description}
                   </button>
                 );
               })}
-            </div>            
-            
+              </div> 
+                          
           ) : (
             ''
           )}
 
-          <div class="field">
-            <label class="label">
+          <div className="field">
+            <label className="label">
               Purchase Type?
-              <div class="control">
-                <div class="select">
+              <div className="control">
+                <div className="select">
                   <select
                     name="purchaseType"
                     onChange={e => this.handlePurchaseType(e)}
@@ -212,9 +220,9 @@ class BeerSubmission extends Component {
             </label>
           </div>
 
-          <div class="field is-grouped">
-            <div class="control">
-              <button class="button is-primary" type="submit">
+          <div className="field is-grouped">
+            <div className="control">
+              <button className="button is-primary" type="submit">
                 Submit Find
               </button>
             </div>
