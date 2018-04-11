@@ -8,7 +8,7 @@ const { GMAPS_API_KEY, GGEO_API_KEY } = process.env;
 const serverApp = express();
 const port = process.env.PORT || 5000;
 
-//middleware
+//middleware -- needed for Heroku every time
 serverApp.use(express.static('client/build'));
 
 serverApp.get('/geocode/:zip', function(request, response) {
