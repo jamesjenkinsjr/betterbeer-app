@@ -85,12 +85,15 @@ class BeerSubmission extends Component {
     return (
       <div className="section">
         <div className="container">
+        <div className="columns">
+        <div className="column is-10 is-offset-1">
       <div id="form-wrap">
+
         <form id="beer-submit" onSubmit={e => this.handleNewBeerSubmit(e)}>
-          <h3 class="title">Spotted a better deal? Submit it here:</h3>
+          <h3 class="title">Spotted a better deal?</h3>
           <div class="field">
           <label class="label">
-          Name of beer
+          Beer Name
             <div class="control">
               <input
                 class="input"
@@ -217,6 +220,8 @@ class BeerSubmission extends Component {
             </div>
           </div>
         </form>
+      </div>
+      </div>
       </div>
       </div>
       </div>
