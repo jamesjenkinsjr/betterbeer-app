@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navigation = props => (
-  <nav className="navbar is-primary" role="navigation">
+  <div className="navbar is-primary" role="navigation">
     <div className="navbar-brand">
         <div className="navbar-item">
             <h1 className='is-white' style={{ textDecoration: "none", color: "white" }}>
@@ -54,7 +54,7 @@ const Navigation = props => (
         </div>
       </div>
     </div>
-  </nav>
+  </div>
 );
 
 export default Navigation;

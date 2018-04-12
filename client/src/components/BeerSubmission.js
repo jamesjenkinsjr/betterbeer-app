@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import BeerEntry from "./BeerEntry";
 import FormSuccess from "./FormSuccess";
 import { pushNewBeer } from "../services/betterbeer-api";
-import { getSearchResults, getLocation } from "../services/google-maps";
+import { getSearchResults } from "../services/google-maps";
 import LoadingIcon from '../images/loading.gif';
 
 class BeerSubmission extends Component {
